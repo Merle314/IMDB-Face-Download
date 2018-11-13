@@ -66,10 +66,10 @@ def save_img(data_path, urlQueue):
             rect = [int(i) for i in row['rect'].split(' ')]
             download_shape = img.shape
             if ((img_shape[0]!=download_shape[0]) or (img_shape[1]!=download_shape[1])):
-                ratio_height = download_shape[0]/img_shape[0]
-                ratio_width = download_shape[1]/img_shape[1]
-                rect = [int(rect[0]*ratio_width), int(rect[1]*ratio_height), int(rect[2]*ratio_width), int(rect[3]*ratio_height)]
-                # img = transform.resize(img, (img_shape[0], img_shape[1]))
+                # ratio_height = download_shape[0]/img_shape[0]
+                # ratio_width = download_shape[1]/img_shape[1]
+                # rect = [int(rect[0]*ratio_width), int(rect[1]*ratio_height), int(rect[2]*ratio_width), int(rect[3]*ratio_height)]
+                img = transform.resize(img, (img_shape[0], img_shape[1]))
             face_shape = [int((rect[3]-rect[1])/2), int((rect[2]-rect[0])/2)]
             rect = [max(0, rect[0]-face_shape[1]), max(0, rect[1]-face_shape[0]), min(img_shape[1], rect[2]+face_shape[1]), min(img_shape[0], rect[3]+face_shape[0])]
             img = img[rect[1]:rect[3], rect[0]:rect[2], :]
